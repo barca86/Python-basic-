@@ -1,0 +1,42 @@
+Бельцевич Д.А.
+
+
+#EASY
+# Задача-1:
+# Напишите скрипт, создающий директории dir_1 - dir_9 в папке,
+# из которой запущен данный скрипт.
+# И второй скрипт, удаляющий эти папки.
+
+----------------------------------------------------------
+import os
+
+print("current dir = ", os.path.dirname(__file__))
+names = ['Dir_1', 'Dir_2', 'Dir_3', 'Dir_4', 'Dir_5', 'Dir_6', 'Dir_7', 'Dir_8', 'Dir_9']
+for i in names:
+    dir_path = os.path.join(os.getcwd(), i)
+    print(dir_path)
+    try:
+        os.mkdir(dir_path)
+    except FileExistsError:
+        print('Такая директория уже существует')
+
+a = input("Хотите удалить папки? - y/n  ")
+print(a)
+if a == "y":
+    for i in names:
+        dir_path = os.path.join(os.getcwd(), i)
+        os.rmdir(dir_path)
+else:
+    print("Как хотите...")
+
+----------------------------------------------------------
+
+# Задача-2:
+# Напишите скрипт, отображающий папки текущей директории.
+
+----------------------------------------------------------
+import os
+for root, dirs, files in os.walk("."):
+    for dirname in dirs:
+        print(dirname)
+----------------------------------------------------------
